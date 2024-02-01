@@ -1,0 +1,1 @@
+export {default as TypeList} from './TypeList/TypeList'
