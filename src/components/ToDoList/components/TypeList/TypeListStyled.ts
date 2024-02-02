@@ -1,20 +1,20 @@
 import styled from "@emotion/styled";
 
 export const ItemTodoStyled = styled.div<{
-  completed: boolean;
+  isCompleted: boolean;
   isEditing: boolean;
 }>`
   position: relative;
-  text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
-  color: ${(props) => (props.completed ? "gray" : "#000")};
+  color: ${(props) => (props.isCompleted ? "#68a268" : "#000")};
   padding: 15px 15px 15px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 20px;
+  font-weight: ${(props) => (props.isCompleted ? 700 : 500)};
 
-  border: 1px solid ${(props) => (props.isEditing ? "#b83f45" : "none")};
-  box-shadow: ${(props) => (props.isEditing ? "0 0 2px 2px #cf7d7d" : "none")};
+  border: 1px solid ${(props) => (props.isEditing ? "#e0e7e1" : "none")};
+  box-shadow: ${(props) => (props.isEditing ? "0 0 2px 2px #e0e7e1" : "none")};
 
   &:not(:nth-of-type(1)) {
     border-top: 1px solid
@@ -48,14 +48,14 @@ export const ItemTodoStyled = styled.div<{
 
       input {
         background: rgba(0, 0, 0, 0.003);
-        visibility: ${(props) => (props.completed ? "visible" : "hidden")};
+        visibility: ${(props) => (props.isCompleted ? "visible" : "hidden")};
 
         &:checked + .itemLabel .labelCheckbox {
           background-color: #fff;
-          border-color: ${(props) => (props.completed ? "#66bb6a" : "#ccc")};
+          border-color: ${(props) => (props.isCompleted ? "#66bb6a" : "#ccc")};
 
           &:after {
-            opacity: ${(props) => (props.completed ? "1" : "0")};
+            opacity: ${(props) => (props.isCompleted ? "1" : "0")};
           }
         }
       }
@@ -65,7 +65,7 @@ export const ItemTodoStyled = styled.div<{
 
         .labelCheckbox {
           background-color: #fff;
-          border: 1px solid ${(props) => (props.completed ? "#66bb6a" : "#ccc")};
+          border: 1px solid ${(props) => (props.isCompleted ? "#66bb6a" : "#ccc")};
           border-radius: 50%;
           cursor: pointer;
           height: 28px;
@@ -81,8 +81,8 @@ export const ItemTodoStyled = styled.div<{
             content: "";
             height: 6px;
             left: 7px;
-            opacity: ${(props) => (props.completed ? "1" : "0")};
-            border-color: ${(props) => (props.completed ? "#66bb6a" : "unset")};
+            opacity: ${(props) => (props.isCompleted ? "1" : "0")};
+            border-color: ${(props) => (props.isCompleted ? "#66bb6a" : "unset")};
             position: absolute;
             top: 8px;
             transform: rotate(-45deg);

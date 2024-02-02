@@ -1,8 +1,8 @@
 import { InputWrapper } from "./FormSetTodoStyled";
 import { Todo } from "../../interfaces/todo";
-import { FaChevronDown } from "react-icons/fa";
 import { useState, KeyboardEvent } from "react";
 import { ToDoList, FooterButton } from "..";
+import { FaCheckCircle } from "react-icons/fa";
 
 const FormSetTodo = () => {
   const [newTodo, setNewTodo] = useState("");
@@ -43,14 +43,16 @@ const FormSetTodo = () => {
       isCompleted: !allCompleted,
     }));
     setToDoList(updatedTodos);
+    const updatedList = updatedTodos.map((item: Todo) => ({ ...item }));
+    localStorage.setItem("List", JSON.stringify(updatedList));
   };
 
   const handleToggle = (id: number) => {
-    setToDoList((prevTodos: Todo[]) =>
-      prevTodos.map((item: Todo) =>
-        item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
-      )
+    const updatedToggle = toDoList.map((item) =>
+      item.id === id ? { ...item, isCompleted: !item.isCompleted } : item
     );
+    setToDoList(updatedToggle);
+    localStorage.setItem("List", JSON.stringify(updatedToggle))
   };
 
   const handleEditItem = (id: number, newContent: string) => {
@@ -72,22 +74,32 @@ const FormSetTodo = () => {
       <InputWrapper>
         <input
           type="text"
-          placeholder="What needs to be done?"
+          placeholder="Enter the new item"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyDown={handleKeyDown}
         />
         {toDoList.length > 0 && (
-          <FaChevronDown
+          <FaCheckCircle
             className="iconCheckAll"
             size={25}
-            color={areAllCompleted ? "#949494" : "#484848"}
+            color={areAllCompleted ? "#484848" : "#949494"}
             onClick={handleToggleAll}
           />
         )}
       </InputWrapper>
-      <ToDoList  toDoList={toDoList} handleRemove={handleRemoveItem} handleToggle={handleToggle} handleEdit={handleEditItem}/>
-      {toDoList.length > 0 && <FooterButton toDoList={toDoList} handleRemoveCompleted={handleRemoveCompleted}/>}
+      <ToDoList
+        toDoList={toDoList}
+        handleRemove={handleRemoveItem}
+        handleToggle={handleToggle}
+        handleEdit={handleEditItem}
+      />
+      {toDoList.length > 0 && (
+        <FooterButton
+          toDoList={toDoList}
+          handleRemoveCompleted={handleRemoveCompleted}
+        />
+      )}
     </>
   );
 };

@@ -9,14 +9,11 @@ interface FooterProps {
 
 const FooterButton = (props: FooterProps) => {
   const { toDoList, handleRemoveCompleted } = props;
-  const completedTodoCount = toDoList.filter(
-    (item) => !item.isCompleted
-  ).length;
   const location = useLocation();
   return (
     <FooterStyled>
       <span>
-        {completedTodoCount} item{completedTodoCount > 1 && "s"} left!
+        Total: {toDoList.length} item{toDoList.length > 1 && "s"} 
       </span>
       <ButtonListStyled>
         <nav>

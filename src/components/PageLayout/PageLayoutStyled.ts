@@ -4,9 +4,9 @@ export const Wrapper = styled.div`
   text-align: center;
   position: relative;
   h1 {
-    color: #b83f45;
+    color: gray;
     font-size: 80px;
-    font-weight: 200;
+    font-weight: bolder;
   }
   color: #000;
 `;

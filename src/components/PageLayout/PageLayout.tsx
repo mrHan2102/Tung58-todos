@@ -5,7 +5,7 @@ const PageLayout = () => {
     return(
         <>
         <Wrapper>
-            <h1>todos</h1>
+            <h1>TO DO LIST</h1>
             <Outlet/>
         </Wrapper>
         </>

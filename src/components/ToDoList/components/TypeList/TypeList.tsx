@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Todo } from '../../../../interfaces/todo';
 import { ItemTodoStyled } from './TypeListStyled';
-import { X } from "lucide-react"
+import { FaTrash } from "react-icons/fa";
 interface TodoItemProps {
     todo: Todo;
     handleToggle: (id: number) => void;
@@ -22,7 +22,7 @@ interface TodoItemProps {
     };
   
     return (
-      <ItemTodoStyled completed={todo.isCompleted} isEditing={isEditing}>
+      <ItemTodoStyled isCompleted={todo.isCompleted} isEditing={isEditing}>
         {
           !isEditing ? 
             <div className='item'>
@@ -35,7 +35,7 @@ interface TodoItemProps {
               <div className="itemContent">
                 <div className='itemInput' onDoubleClick={() => setIsEditing(true)}>{todo.content}</div>
                 <div className="btnRemove" onClick={() => handleRemove(todo.id)}>
-                  <X/>
+                  <FaTrash size={15}/>
                 </div>
               </div>
             </div> :
